@@ -94,3 +94,4 @@ ITEM_PIPELINES = {
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = 'redis://user:123123...@192.168.3.200:6379'
+PROXIES = ["http://107.173.122.99:8888","http://104.168.13.72:8888"] 
