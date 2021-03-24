@@ -92,4 +92,4 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-REDIS_URL = 'redis://user:Mmm123123...@192.168.3.200:6379'
+REDIS_URL = 'redis://user:123123...@192.168.3.200:6379'
