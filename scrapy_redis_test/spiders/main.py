@@ -13,8 +13,9 @@ class MyCrawler(RedisCrawlSpider):
     redis_key = 'paredis:start_urls'
 
     rules = (
-        Rule(LinkExtractor(allow=r'.*CATEGORY_ID=MLM.\d+.*'), follow=True),
+        Rule(LinkExtractor(allow=r'.*_ID=MLM.\d+.*'), follow=True),
         Rule(LinkExtractor(allow=r'.*/_Desde_\d+$'),follow=True),#下一页  follow = true的意思是下一次提取网页中包含我们我们需要提取的信息,True代表继续提取
+        Rule(LinkExtractor(allow=r'.*%3Dcategory%.*'),follow=True),
         Rule(LinkExtractor(allow=r'.*/MLM(\d+|-\d+)',deny=( r'.*/jms/mlm/lgz/login.*',
                                                             r'.*noindex.*',
                                                             r'.*auth.*',

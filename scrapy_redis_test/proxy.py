@@ -7,6 +7,10 @@ class ProxyMiddleware(object):
         print('测试IP:', ip)
         request.meta['proxy'] = ip
 
-
+class CheckProxyMiddleware(object):
+ 
+  def process_response(self, request, response, spider):
+    print('代理IP:', request.meta['proxy'])
+    return response
 
         

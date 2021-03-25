@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -57,6 +57,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
     'scrapy_redis_test.proxy.ProxyMiddleware':401,
+    'scrapy_redis_test.proxy.CheckProxyMiddleware':402
 }
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -75,12 +76,12 @@ ITEM_PIPELINES = {
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 0.8
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
@@ -94,4 +95,6 @@ ITEM_PIPELINES = {
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = 'redis://user:123123...@192.168.3.200:6379'
-PROXIES = ["http://107.173.122.99:8888","http://104.168.13.72:8888"] 
+PROXIES = [ "http://107.173.122.99:8888",
+            "http://104.168.13.72:8888"
+          ] 
