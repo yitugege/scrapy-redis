@@ -62,14 +62,14 @@ class MyCrawler(RedisCrawlSpider):
         #print(like_count)
         #打印店铺
         seller = response.xpath('//a[@class="ui-pdp-action-modal__link"]/span[@class="ui-pdp-color--BLUE"]/text()').get()
-        if  seller == None:
-            return
         #获取销量,判读是否为usado,如果不是那么取整数，如果是不做操作
         Num_sell = response.xpath('//div[@class="ui-pdp-header"]/div[@class="ui-pdp-header__subtitle"]/span[@class="ui-pdp-subtitle"]/text()').get()
+        if  Num_sell is None:
+            return
         #print("-----------------------------------Num_sell--------------------------")
         #print(Num_sell)
         #print(type(Num_sell))
-        if bool(re.findall(r'\d+',Num_sell)):
+        elif bool(re.findall(r'\d+',Num_sell)):
             Num_sell = re.findall(r"\d+",Num_sell)
             Num_sell = list(map(int,Num_sell))
             Num_sell = Num_sell[0]
