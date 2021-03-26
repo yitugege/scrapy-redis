@@ -3,6 +3,7 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import re
 from scrapy import signals
 
 # useful for handling different item types with a single interface
@@ -87,7 +88,10 @@ class ScrapyRedisTestDownloaderMiddleware:
         # - return a Response object
         # - return a Request object
         # - or raise IgnoreRequest
-        return response
+        if response.status >= 403:
+            return request
+        else:
+            return response
 
     def process_exception(self, request, exception, spider):
         # Called when a download handler or a process_request()
