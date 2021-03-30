@@ -9,8 +9,8 @@ from scrapy_redis.spiders import RedisCrawlSpider
 
 class MyCrawler(RedisCrawlSpider):
     """Spider that reads urls from redis queue (myspider:start_urls)."""
-    name = 'paredis'
-    redis_key = 'paredis:start_urls'
+    name = 'mercado'
+    redis_key = 'mercado:start_urls'
 
     rules = (
         Rule(LinkExtractor(allow=r'.*_ID=MLM.\d+.*'), follow=True),
@@ -80,7 +80,8 @@ class MyCrawler(RedisCrawlSpider):
             return
 
         #记录爬取的时间
-        GMT_FORMAT = '%D %H:%M:%S'
+        #GMT_FORMAT = '%D %H:%M:%S'
+        GMT_FORMAT = '%D'
         current_time = datetime.datetime.utcnow().strftime(GMT_FORMAT)
 
         items['title']=title
