@@ -1,3 +1,4 @@
+from scrapy import item
 from scrapy.spiders import Rule
 from scrapy.linkextractors import LinkExtractor
 from ..pipelines import ScrapyRedisTestPipeline
@@ -78,7 +79,16 @@ class MyCrawler(RedisCrawlSpider):
             #print(type(Num_sell))
         else:
             return
-
+        #获取60天销量
+        days60_sell=response.xpath('//strong[@class="ui-pdp-seller__sales-description"]/text()').get()
+        if days60_sell is None:
+            return
+        elif bool(re.findall(r'\d+',days60_sell)):
+            days60_sell = re.findall(r'\d+',days60_sell)
+            days60_sell = list(map(int,days60_sell))
+            days60_sell = days60_sell[0]
+        else:
+            return
         #记录爬取的时间
         #GMT_FORMAT = '%D %H:%M:%S'
         GMT_FORMAT = '%D'
@@ -92,5 +102,6 @@ class MyCrawler(RedisCrawlSpider):
         items['seller']=seller
         items['Num_sell']=Num_sell
         items['current_time']=current_time
+        items['days60_sell']=days60_sell
 
         return items
