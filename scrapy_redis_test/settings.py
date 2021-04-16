@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0.8
+DOWNLOAD_DELAY = 0.5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -102,7 +102,8 @@ REDIS_URL = 'redis://user:123123...@192.168.3.200:6379'
 PROXIES = [ "http://107.173.122.99:8888",
             #"http://104.168.13.72:8888",
             #"http://176.122.170.134:8888",
-            #"http://65.49.193.91:8888"      
+            #"http://65.49.193.91:8888"
+             
           ] 
 #允许处理403返回头
 HTTPERROR_ALLOWED_CODES = [403]                    
