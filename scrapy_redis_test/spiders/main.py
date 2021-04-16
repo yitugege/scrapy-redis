@@ -14,11 +14,10 @@ class MyCrawler(RedisCrawlSpider):
     redis_key = 'mercado:start_urls'
 
     rules = (
-        
-        Rule(LinkExtractor(allow=r'.*/c/.*#c_id=.*'),follow=True),
-        Rule(LinkExtractor(allow=r'.*CATEGORY_ID=M\w\w.\d+.*'), follow=True),
+        Rule(LinkExtractor(allow=r'.*_ID=MLM.\d+.*'), follow=True),
         Rule(LinkExtractor(allow=r'.*/_Desde_\d+$'),follow=True),#下一页  follow = true的意思是下一次提取网页中包含我们我们需要提取的信息,True代表继续提取
-        Rule(LinkExtractor(allow=r'.*/M\w\w(\d+|-\d+|/).*',deny=( r'.*/jms/mlm/lgz/login.*',
+        Rule(LinkExtractor(allow=r'.*%3Dcategory%.*'),follow=True),
+        Rule(LinkExtractor(allow=r'.*/MLM(\d+|-\d+)',deny=( r'.*/jms/mlm/lgz/login.*',
                                                             r'.*noindex.*',
                                                             r'.*auth.*',
                                                             r'.*product_trigger_id=MLM+\d+',
@@ -26,8 +25,7 @@ class MyCrawler(RedisCrawlSpider):
                                                             r'.*pdp_filters=category:.*',
                                                             r'.*method=add.*',
                                                             r'.*/s$')),callback='parse',follow=True)
-        
-    )  
+    )   
 
     def parse (self,response):
         #print('--------------------当前连接----------------')
