@@ -23,7 +23,7 @@ class MyCrawler(RedisCrawlSpider):
                                                             r'.*product_trigger_id=MLM+\d+',
                                                             r'.*/seller-info$',
                                                             r'.*pdp_filters=category:.*',
-                                                            r'.*method=add.*',
+                                                            r'.*method=.*',
                                                             r'.*/s$')),callback='parse',follow=True)
     )   
 
