@@ -2,6 +2,7 @@ import scrapy
 from ..items import ScrapyRedisTestItem
 import re
 import datetime
+import os
 
 
 #采集指定url
@@ -14,6 +15,10 @@ class QuotesSpider(scrapy.Spider):
 
     def parse(self,response):
         print(response.text)
+        
     
 
    
+
+ 
+
