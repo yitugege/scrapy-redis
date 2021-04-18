@@ -13,6 +13,9 @@ class QuotesSpider(scrapy.Spider):
     #base_urls ='https://computacion.mercadolibre.com.mx/'
 
 
+
+
+
     def parse(self,response):
         print(response.text)
         
